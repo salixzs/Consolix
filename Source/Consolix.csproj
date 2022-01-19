@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <RootNamespace>Consolix</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <NoWarn>1701;1702</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- === NuGet package description properties ===-->
+  <PropertyGroup Label="NuGet properties">
+    <PackageId>Consolix</PackageId>
+    <Authors>Anrijs Vitolins;GitHub contributors</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugSymbols>true</DebugSymbols>
+    <PackageTags>Console;Extensions</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>consolix.png</PackageIcon>
+    <Description>
+      Extensions for simple console tools writing. Includes command logic separation, automatic help generation, attribute definition and parsing, input helpers (password, confirm), output helpers (colored output), color scheme definitions, simple menu provider.
+    </Description>
+    <PackageReadmeFile>nuget_readme.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/salixzs/Consolix</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/salixzs/Consolix</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+    <PackageReleaseNotes>
+      Initial release.
+    </PackageReleaseNotes>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../consolix.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="../../nuget_readme.md" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>
