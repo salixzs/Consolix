@@ -82,16 +82,41 @@ public static partial class Consolix
     }
 
     /// <summary>
-    /// Reads the line from console input masking pressed characters with asterix.
+    /// Reads the line from console input masking pressed characters with asterisk.
     /// </summary>
     public static string ReadLineSecret()
     {
+        var startPosition = Console.CursorLeft;
         var keyInfo = Console.ReadKey(intercept: true);
         var secret = new StringBuilder();
         while (keyInfo.Key != ConsoleKey.Enter)
         {
-            secret.Append(keyInfo.KeyChar);
-            Console.Write("*");
+            if (keyInfo.Key == ConsoleKey.Backspace && secret.Length > 0)
+            {
+                secret.Remove(secret.Length - 1, 1);
+            }
+
+            if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                return string.Empty;
+            }
+
+            if (keyInfo.KeyChar > 31)
+            {
+                secret.Append(keyInfo.KeyChar);
+            }
+
+            CursorToPosition(startPosition);
+            Console.Write(new string('*', secret.Length));
+
+            var currentPosition = Console.CursorLeft;
+            if (secret.Length > 4)
+            {
+                Console.Write($" ({secret.Length})");
+            }
+
+            Console.Write(new string(' ', 60 - secret.Length));
+            CursorToPosition(currentPosition);
             keyInfo = Console.ReadKey(intercept: true);
         }
 
