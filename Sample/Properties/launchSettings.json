@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Consolix.Sample": {
+      "commandName": "Project",
+      "commandLineArgs": "input"
+    }
+  }
+}

@@ -41,8 +41,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../consolix.png" Pack="true" Visible="false" PackagePath="" />
-    <None Include="../../nuget_readme.md" Pack="true" Visible="false" PackagePath="" />
+    <None Include="../consolix.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="../nuget_readme.md" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
