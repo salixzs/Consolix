@@ -18,7 +18,7 @@ Package expects console application to be created as hosted application (introdu
   * String.Format placeholders bi-coloring.
   * Clear console line, overwrite current console line.
   * Setting predefined [color scheme](https://github.com/salixzs/Consolix/wiki/Color-schemes) from 4 available in package.
-  * Simple menu.
+  * [Simple menu](https://github.com/salixzs/Consolix/wiki/Input-helpers#menu).
   * [Busy indicator (spinner)](https://github.com/salixzs/Consolix/wiki/Spinner) for long process visualization (does not block working thread).
     * Working status messages along with spinner.
     * Elapsed time display for process.
@@ -32,6 +32,24 @@ Package expects console application to be created as hosted application (introdu
   * Wait for Enter
   * Wait for Escape.
   * Wait for y/n.
+
+
+# Examples
+
+#### Spinner (here growing arrow) with elapsed time and status messages
+![Spinner with time and status messages](https://raw.githubusercontent.com/wiki/salixzs/Consolix/spinner_time.gif)
+
+#### Progress bar
+![Progress bar](https://raw.githubusercontent.com/wiki/salixzs/Consolix/progress_bar.gif)
+
+#### Menu
+![Simple menu](https://raw.githubusercontent.com/wiki/salixzs/Consolix/menu.gif)
+
+#### Output coloring
+![Output coloring](https://raw.githubusercontent.com/wiki/salixzs/consolix/string_format.jpg)
+
+#### Color scheme choices (here: Raspberry)
+![Raspberry color scheme](https://raw.githubusercontent.com/wiki/salixzs/consolix/raspberry.jpg)
 
 
 # Documentation
