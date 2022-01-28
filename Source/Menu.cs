@@ -12,7 +12,7 @@ public static partial class Consolix
     /// <returns>Selected menu item index (Zero-based).</returns>
     public static int MenuSelectSingle(
         IEnumerable<string> optionsList,
-        SelectSingleSettings settings = null,
+        SelectSingleSettings? settings = null,
         int startingIndex = 0)
     {
         if (optionsList is null)
@@ -21,9 +21,14 @@ public static partial class Consolix
         }
 
         var options = optionsList.ToList();
-        if (options.Count < 2)
+        if (!options.Any() || options.Count < 2)
         {
             throw new ArgumentException("Options list must have more than one item.", nameof(optionsList));
+        }
+
+        if (options.Any(string.IsNullOrEmpty))
+        {
+            throw new ArgumentException("Options list cannot have empty items.", nameof(optionsList));
         }
 
         settings ??= new SelectSingleSettings();
@@ -102,50 +107,4 @@ public static partial class Consolix
             Console.CursorVisible = cursorVisible;
         }
     }
-}
-
-/// <summary>
-/// Menu settings.
-/// </summary>
-public sealed class SelectSingleSettings
-{
-    /// <summary>
-    /// Caption (Prompt) to show above menu
-    /// </summary>
-    public string Caption { get; set; } = "Use up, down keys and select one of choices by pressing Enter: ";
-
-    /// <summary>
-    /// String prefix to put before selected menu item. Default >
-    /// </summary>
-    public string SelectedPrefix { get; set; } = " > ";
-
-    /// <summary>
-    /// Foreground color for selected menu item. Default - white.
-    /// </summary>
-    public ConsoleColor SelectedForegroundColor { get; set; } = ConsoleColor.White;
-
-    /// <summary>
-    /// Background color for selected menu item. Default - Dark Magenta (Dark Purple).
-    /// </summary>
-    public ConsoleColor SelectedBackgroundColor { get; set; } = ConsoleColor.DarkMagenta;
-
-    /// <summary>
-    /// Prefix to put before unselected menu item. Default - empty.
-    /// </summary>
-    public string UnselectedPrefix { get; set; } = "   ";
-
-    /// <summary>
-    /// Foreground color for unselected menu items. Default - Gray.
-    /// </summary>
-    public ConsoleColor UnselectedForegroundColor { get; set; } = ConsoleColor.Gray;
-
-    /// <summary>
-    /// Background color to draw for unselected menu items. Default - black.
-    /// </summary>
-    public ConsoleColor UnselectedBackgroundColor { get; set; } = ConsoleColor.Black;
-
-    /// <summary>
-    /// Prompt of selected menu item when menu item is chosen.
-    /// </summary>
-    public string EndResultPrompt { get; set; } = "Selected: ";
 }

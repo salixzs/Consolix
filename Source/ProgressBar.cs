@@ -22,7 +22,7 @@ public class ProgressBar : IDisposable
         set => _currentStep = value > _totalSteps ? _totalSteps : value;
     }
 
-    private int _totalSteps; // ProgressBar - how many steps the work will take to complete
+    private readonly int _totalSteps; // ProgressBar - how many steps the work will take to complete
     private int _currentStep = 0;
 
     /// <summary>
@@ -35,6 +35,7 @@ public class ProgressBar : IDisposable
     /// <summary>
     /// Creates a Progress bar.
     /// </summary>
+    /// <param name="totalStepCount">Specify how many steps in total your process will perform (code blocks, records/objects to process).</param>
     /// <param name="color">Specify Color to use for spinner and [optional] message(s). Default - default color (Gray).</param>
     public ProgressBar(int totalStepCount, ConsoleColor color = ConsoleColor.Gray)
     {
@@ -54,7 +55,7 @@ public class ProgressBar : IDisposable
         while (_active)
         {
             this.Draw();
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
         }
     }
 
@@ -111,7 +112,7 @@ public class ProgressBar : IDisposable
         }
 
         Consolix.CursorToPosition(33);
-        Consolix.Write($"| {progressPercentage:00}% ({_timer.Elapsed.ToString(@"mm\:ss")}) |", _color);
+        Consolix.Write($"| {progressPercentage:00}% ({_timer.Elapsed:mm\\:ss}) |", _color);
     }
 
     public void Dispose() => this.Stop();

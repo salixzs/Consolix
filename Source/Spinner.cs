@@ -206,14 +206,14 @@ public class Spinner : IDisposable
 
         if (_showTime && _spinnerType is SpinnerType.GrowingArrow or SpinnerType.GrowingDots)
         {
-            Consolix.Write($"[{_timer.Elapsed.ToString(@"mm\:ss")}] ", _color);
+            Consolix.Write($"[{_timer.Elapsed:mm\\:ss}] ", _color);
         }
 
         Consolix.Write(_sequence[_counter], _color);
 
         if (_showTime && _spinnerType != SpinnerType.GrowingArrow && _spinnerType != SpinnerType.GrowingDots)
         {
-            Consolix.Write($" [{_timer.Elapsed.ToString(@"mm\:ss")}]", _color);
+            Consolix.Write($" [{_timer.Elapsed:mm\\:ss}]", _color);
         }
 
         if (!string.IsNullOrWhiteSpace(this.Message) && _spinnerType != SpinnerType.GrowingArrow && _spinnerType != SpinnerType.GrowingDots)
@@ -237,7 +237,7 @@ public class Spinner : IDisposable
 
         if (_showTime && _spinnerType is SpinnerType.GrowingArrow or SpinnerType.GrowingDots)
         {
-            Consolix.Write($"[{_timer.Elapsed.ToString(@"mm\:ss")}] ", _color);
+            Consolix.Write($"[{_timer.Elapsed:mm\\:ss}] ", _color);
         }
 
         var progressPercentage = (decimal)this.CurrentStep / _totalSteps * 100;
@@ -278,37 +278,4 @@ public class Spinner : IDisposable
     /// Stops the spinner and Disposes its instance.
     /// </summary>
     public void Dispose() => this.Stop();
-}
-
-public enum SpinnerType
-{
-    /// <summary>
-    /// Uses cycling symbols of \ | / -
-    /// </summary>
-    Lines,
-
-    /// <summary>
-    /// Pulsating .oOo.
-    /// </summary>
-    Circles,
-
-    /// <summary>
-    /// Interchanging + x
-    /// </summary>
-    Cross,
-
-    /// <summary>
-    /// Swapping between symbols ▄ and ▀
-    /// </summary>
-    Cubes,
-
-    /// <summary>
-    /// Growing dots (from 1 to 4).
-    /// </summary>
-    GrowingDots,
-
-    /// <summary>
-    /// Growing =====> arrow.
-    /// </summary>
-    GrowingArrow
 }
