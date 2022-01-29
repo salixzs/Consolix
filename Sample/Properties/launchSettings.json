@@ -2,7 +2,7 @@
   "profiles": {
     "Consolix.Sample": {
       "commandName": "Project",
-      "commandLineArgs": "output"
+      "commandLineArgs": "args --rc --t \"Consolix is great\" --n 69 --d 1968-04-03 --e Modern"
     }
   }
 }

@@ -4,7 +4,7 @@ Console applications are quick way to have something done either as a supporting
 
 There are numerous packages covering some of aspects (color console, spinner, progress bar, input helpers, command and parameter parsers) and they are more extensive in that one thing they do. This package takes minimum necessary for simple tooling/app build and packs all these things in one convenient package.
 
-Package expects console application to be created as hosted application (introduced in .Net Core), using dependency injection and other possibilities usually available by default in ASP.NET applications. This includes logging availability and configuration file usage, too.
+To use commands and parameter parsing/mapping to command properties, package expects console application to be created as hosted application (introduced in .Net Core), using dependency injection and other possibilities usually available by default in ASP.NET applications. This includes logging availability and configuration file usage, too.
 
 # Package provides:
 
@@ -46,6 +46,9 @@ Package expects console application to be created as hosted application (introdu
 
 #### Output coloring
 ![Output coloring](https://raw.githubusercontent.com/wiki/salixzs/consolix/string_format.jpg)
+
+#### Command auto-help
+![Command auto-help](https://raw.githubusercontent.com/wiki/salixzs/consolix/command-args-help.jpg)
 
 #### Color scheme choices (here: Raspberry)
 ![Raspberry color scheme](https://raw.githubusercontent.com/wiki/salixzs/consolix/raspberry.jpg)

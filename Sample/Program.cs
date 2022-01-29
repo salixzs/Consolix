@@ -61,6 +61,7 @@ public class Program
         services.AddTransient<IConsoleOperation, ColorDemo>();
         services.AddTransient<IConsoleOperation, OutputDemo>();
         services.AddTransient<IConsoleOperation, InputDemo>();
+        services.AddTransient<IConsoleOperation, ArgsDemo>();
         // --> Demo commands define ends here
 
         services.AddTransient<ConsoleOperationHandler>();

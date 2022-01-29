@@ -14,7 +14,7 @@ public class ColorDemo : IConsoleOperation
     public string OperationName => "colors";
 
     public string HelpText =>
-        "Method to show set color scheme variations on console output.";
+        "Command to show color scheme variations on console output.";
 
     public Task<int> DoWork()
     {

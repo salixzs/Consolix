@@ -99,9 +99,12 @@ public class ConsoleOperationHandler
     private void LoadOptionFromConfiguration(IConsoleOperation consoleOperation, IConfigurationSection operationOptionsInConfiguration, PropertyInfo operationArgumentProperty, ConsoleOptionAttribute optionAttribute)
     {
         string? configurationStringValue = operationOptionsInConfiguration[optionAttribute.Name];
+
+        // Handle nullable types
+        var actualType = Nullable.GetUnderlyingType(operationArgumentProperty.PropertyType) ?? operationArgumentProperty.PropertyType;
         try
         {
-            object? argumentTypedValue = Convert.ChangeType(configurationStringValue, operationArgumentProperty.PropertyType, CultureInfo.InvariantCulture);
+            object? argumentTypedValue = Convert.ChangeType(configurationStringValue, actualType, CultureInfo.InvariantCulture);
             operationArgumentProperty.SetValue(consoleOperation, argumentTypedValue);
             _logger.LogDebug($"  - option \"{optionAttribute.Name}\" value is set to \"{configurationStringValue}\" from configuration.");
         }
@@ -120,8 +123,11 @@ public class ConsoleOperationHandler
             index = Array.FindIndex(args, arg => arg == $"--{optionAttribute.ShortName}");
         }
 
+        // Handle nullable types
+        var actualType = Nullable.GetUnderlyingType(operationArgumentProperty.PropertyType) ?? operationArgumentProperty.PropertyType;
+
         // For booleans we just need it present without value
-        if (index != -1 && operationArgumentProperty.PropertyType == typeof(bool))
+        if (index != -1 && actualType == typeof(bool))
         {
             _logger.LogDebug($"  - option \"{optionAttribute.Name}\" is set from arguments to TRUE.");
             operationArgumentProperty.SetValue(consoleOperation, true);
@@ -138,10 +144,10 @@ public class ConsoleOperationHandler
         try
         {
             // Handle ENUMs
-            if (operationArgumentProperty.PropertyType.IsEnum)
+            if (actualType.IsEnum)
             {
                 // Special case - FLAGged ENUMs
-                if (operationArgumentProperty.PropertyType.IsDefined(typeof(FlagsAttribute), false))
+                if (actualType.IsDefined(typeof(FlagsAttribute), false))
                 {
                     if (IsInteger(argumentStringValue))
                     {
@@ -182,7 +188,7 @@ public class ConsoleOperationHandler
                 }
                 else
                 {
-                    foreach (object? enumValue in Enum.GetValues(operationArgumentProperty.PropertyType))
+                    foreach (object? enumValue in Enum.GetValues(actualType))
                     {
                         if (enumValue.ToString().Equals(argumentStringValue, StringComparison.OrdinalIgnoreCase))
                         {
@@ -194,7 +200,7 @@ public class ConsoleOperationHandler
             }
             else
             {
-                object? argumentTypedValue = Convert.ChangeType(argumentStringValue, operationArgumentProperty.PropertyType, CultureInfo.InvariantCulture);
+                object? argumentTypedValue = Convert.ChangeType(argumentStringValue, actualType, CultureInfo.InvariantCulture);
                 operationArgumentProperty.SetValue(consoleOperation, argumentTypedValue);
                 _logger.LogDebug($"  - option \"{optionAttribute.Name}\" is set from arguments to {argumentStringValue}.");
             }

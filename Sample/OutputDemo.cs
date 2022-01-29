@@ -7,7 +7,7 @@ public class OutputDemo : IConsoleOperation
     public string OperationName => "output";
 
     public string HelpText =>
-        "Method to show possibilities of output extensions.";
+        "Command to show possibilities of output extensions.";
 
     public Task<int> DoWork()
     {
@@ -117,7 +117,7 @@ public class OutputDemo : IConsoleOperation
 
     private static void OutputSpinner()
     {
-        using var spinner = new Spinner(showTime: true, color: ConsoleColor.Green);
+        using var spinner = new Spinner(SpinnerType.Cross, showTime: true, color: ConsoleColor.Green);
         var stepCounter = 0;
         spinner.AddProgressBar(4); // Draw also progress bar with total of 4 steps in process.
 

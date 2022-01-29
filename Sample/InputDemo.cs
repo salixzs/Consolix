@@ -7,7 +7,7 @@ public class InputDemo : IConsoleOperation
     public string OperationName => "input";
 
     public string HelpText =>
-        "Method to show possibilities of input extensions.";
+        "Command to show possibilities of input extensions.";
 
     public Task<int> DoWork()
     {
