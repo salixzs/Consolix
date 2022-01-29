@@ -6,6 +6,9 @@ There are numerous packages covering some of aspects (color console, spinner, pr
 
 To use commands and parameter parsing/mapping to command properties, package expects console application to be created as hosted application (introduced in .Net Core), using dependency injection and other possibilities usually available by default in ASP.NET applications. This includes logging availability and configuration file usage, too.
 
+[![Build](https://github.com/salixzs/Consolix/actions/workflows/build.yml/badge.svg?branch=main)](https://https://github.com/salixzs/Consolix/actions/workflows/build.yml) [![Nuget version](https://img.shields.io/nuget/v/Consolix.svg)](https://www.nuget.org/packages/Consolix/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Consolix.svg)](https://www.nuget.org/packages/Consoix/)
+
+
 # Package provides:
 
 * Creating [console commands](https://github.com/salixzs/Consolix/wiki/Commands) as separate classes based on provided interface:

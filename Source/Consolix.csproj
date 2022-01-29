@@ -25,7 +25,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>consolix.png</PackageIcon>
     <Description>
-      Extensions for simple console tools writing. Includes command logic separation, automatic help generation, attribute definition and parsing, input helpers (password, confirm), output helpers (colored output), color scheme definitions, simple menu provider.
+      Extensions for simple console tools writing. Includes command logic separation, automatic help generation, attribute definition and parsing, input helpers (password, confirm), output helpers (colored output), color scheme definitions, simple menu provider, spinner and progress bar.
     </Description>
     <PackageReadmeFile>nuget_readme.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/salixzs/Consolix</PackageProjectUrl>
