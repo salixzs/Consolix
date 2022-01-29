@@ -63,3 +63,6 @@ To use commands and parameter parsing/mapping to command properties, package exp
 # Demo (Sample) project
 
 Repository includes a [sample (Demo) project](https://github.com/salixzs/Consolix/tree/main/Sample) to visualize its possibilities and usage patterns.
+
+### Like what I created?
+<a href="https://www.buymeacoffee.com/salixzs" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 32px !important;width: 146px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>

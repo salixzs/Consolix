@@ -13,7 +13,19 @@ public class Program
         Consolix.SetColorScheme(ConsoleColorScheme.Campbell);
 
         IHost? host = Host.CreateDefaultBuilder(args)
-            .ConfigureLogging(logging => logging.ClearProviders())
+            .ConfigureLogging(logging =>
+            {
+                // Remove auto-added loggers
+                logging.ClearProviders();
+#if DEBUG
+                // This will show logging statements when run in Visual Studio in Output window.
+                logging.AddDebug();
+                logging.SetMinimumLevel(LogLevel.Debug);
+#else                
+                // For release only Warnings and Errors are in Log, but they are swallowed as no provider is given.
+                logging.SetMinimumLevel(LogLevel.Warning);
+#endif
+            })
             .UseConsoleLifetime()
             .ConfigureServices(SetupContainer)
             .Build();
