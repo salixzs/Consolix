@@ -6,8 +6,10 @@ There are numerous packages covering some of aspects (color console, spinner, pr
 
 To use commands and parameter parsing/mapping to command properties, package expects console application to be created as hosted application (introduced in .Net Core), using dependency injection and other possibilities usually available by default in ASP.NET applications. This includes logging availability and configuration file usage, too.
 
-[![Build](https://github.com/salixzs/Consolix/actions/workflows/build.yml/badge.svg?branch=main)](https://https://github.com/salixzs/Consolix/actions/workflows/build.yml) [![Nuget version](https://img.shields.io/nuget/v/Consolix.svg)](https://www.nuget.org/packages/Consolix/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Consolix.svg)](https://www.nuget.org/packages/Consoix/)
+[![Build](https://github.com/salixzs/Consolix/actions/workflows/build.yml/badge.svg?branch=main)](https://https://github.com/salixzs/Consolix/actions/workflows/build.yml) [![Nuget version](https://img.shields.io/nuget/v/Consolix.svg)](https://www.nuget.org/packages/Consolix/) [![NuGet Downloads](https://img.shields.io/nuget/dt/Consolix.svg)](https://www.nuget.org/packages/Consolix/)
 
+If you use and/or like - **put a Star** to project in GitHub. Talk to your manager to 
+<a href="https://www.buymeacoffee.com/salixzs" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 32px !important;width: 146px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 # Package provides:
 
@@ -38,6 +40,26 @@ To use commands and parameter parsing/mapping to command properties, package exp
 
 # Examples
 
+#### Parameter wiring
+Assume we have this cmdline invoking of application:
+```
+C:>consoleapp.exe command --start 2022-01-21 --times 10 --deep
+```
+
+This requires these parameters to be assigned to properties in command with appropriate types.\
+Package allows to do that easily:
+
+```csharp
+[ConsoleOption("start", "Help text", "s")]
+public DateTime? StartDate { get; set; }
+
+[ConsoleOption("times", "Help text", "t")]
+public int? TimesToRun { get; set; }
+
+[ConsoleOption("deep", "Help text", "d")]
+public bool? GoDeep { get; set; }
+```
+
 #### Spinner (here growing arrow) with elapsed time and status messages
 ![Spinner with time and status messages](https://raw.githubusercontent.com/wiki/salixzs/Consolix/spinner_time.gif)
 
@@ -63,6 +85,3 @@ To use commands and parameter parsing/mapping to command properties, package exp
 # Demo (Sample) project
 
 Repository includes a [sample (Demo) project](https://github.com/salixzs/Consolix/tree/main/Sample) to visualize its possibilities and usage patterns.
-
-### Like what I created?
-<a href="https://www.buymeacoffee.com/salixzs" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 32px !important;width: 146px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>

@@ -30,7 +30,7 @@ public class ConsoleOperationHandler
     /// </summary>
     /// <param name="args">Arguments from command line.</param>
     /// <param name="configuration">[Optional] Reference to configuration object.</param>
-    public void PrepareOperation(string[] args, IConfigurationRoot configuration = null)
+    public void PrepareOperation(string[] args, IConfigurationRoot? configuration = null)
     {
         _args = args;
         var operationNames = new List<string>(_operations.Count);
@@ -60,7 +60,7 @@ public class ConsoleOperationHandler
         this.SetOperationProperties(this.SelectedOperation, configuration, args);
     }
 
-    private void SetOperationProperties(IConsoleOperation consoleOperation, IConfigurationRoot configuration, string[] args)
+    private void SetOperationProperties(IConsoleOperation consoleOperation, IConfigurationRoot? configuration, string[] args)
     {
         IEnumerable<PropertyInfo>? properties = consoleOperation.GetType()
             .GetProperties()

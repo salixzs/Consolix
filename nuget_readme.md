@@ -36,6 +36,26 @@ To use commands and parameter parsing/mapping to command properties, package exp
 
 # Examples
 
+#### Parameter wiring
+Assume we have this cmdline invoking of application:
+```
+C:>consoleapp.exe command --start 2022-01-21 --times 10 --deep
+```
+
+This requires these parameters to be assigned to properties in command with appropriate types.\
+Package allows to do that easily:
+
+```csharp
+[ConsoleOption("start", "Help text", "s")]
+public DateTime? StartDate { get; set; }
+
+[ConsoleOption("times", "Help text", "t")]
+public int? TimesToRun { get; set; }
+
+[ConsoleOption("deep", "Help text", "d")]
+public bool? GoDeep { get; set; }
+```
+
 #### Spinner (here growing arrow) with elapsed time and status messages
 ![Spinner with time and status messages](https://raw.githubusercontent.com/wiki/salixzs/Consolix/spinner_time.gif)
 
