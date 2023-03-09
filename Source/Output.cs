@@ -1,7 +1,11 @@
 using System.Text.RegularExpressions;
-using System;
 
 namespace Salix.Extensions;
+
+internal static class OutputControl
+{
+    public static bool CanUseOutput { get; set; } = true;
+}
 
 public partial class Consolix
 {
@@ -20,6 +24,26 @@ public partial class Consolix
     /// </summary>
     public static void Write(string text, ConsoleColor color) =>
         WriteInColor(Console.Write, text, color);
+
+    /// <summary>
+    /// Writes the specified text in given color without line break at given specific screen coordinates.<br/>
+    /// Output also clears out remaining of the line after actual output.<br/>
+    /// Returns to previous position after output.
+    /// </summary>
+    public static void Write(string text, ConsoleColor color, CursorPosition position)
+    {
+        if (!OutputControl.CanUseOutput)
+        {
+            return;
+        }
+
+        OutputControl.CanUseOutput = false;
+        var currentPosition = new CursorPosition(true);
+        position.MoveTo();
+        WriteInColor(Console.Write, text.PadRight(Console.WindowWidth - position.Left), color);
+        currentPosition.MoveTo();
+        OutputControl.CanUseOutput = true;
+    }
 
     /// <summary>
     /// Writes the specified text in given color with line break.
@@ -205,6 +229,20 @@ public partial class Consolix
         WriteInColor(Console.Write, value, color);
     public static void WriteLine(bool value, ConsoleColor color) =>
         WriteInColor(Console.WriteLine, value, color);
+    public static void Write(bool value, ConsoleColor color, CursorPosition position)
+    {
+        if (!OutputControl.CanUseOutput)
+        {
+            return;
+        }
+
+        OutputControl.CanUseOutput = false;
+        var currentPosition = new CursorPosition(true);
+        position.MoveTo();
+        WriteInColor(Console.Write, value.ToString().PadRight(5), color);
+        currentPosition.MoveTo();
+        OutputControl.CanUseOutput = true;
+    }
 
     public static void Write(char value, ConsoleColor color) =>
         WriteInColor(Console.Write, value, color);
@@ -220,16 +258,58 @@ public partial class Consolix
         WriteInColor(Console.Write, value, color);
     public static void WriteLine(int value, ConsoleColor color) =>
         WriteInColor(Console.WriteLine, value, color);
+    public static void Write(int value, ConsoleColor color, CursorPosition position)
+    {
+        if (!OutputControl.CanUseOutput)
+        {
+            return;
+        }
+
+        OutputControl.CanUseOutput = false;
+        var currentPosition = new CursorPosition(true);
+        position.MoveTo();
+        WriteInColor(Console.Write, value.ToString("D").PadRight(10), color);
+        currentPosition.MoveTo();
+        OutputControl.CanUseOutput = true;
+    }
 
     public static void Write(long value, ConsoleColor color) =>
         WriteInColor(Console.Write, value, color);
     public static void WriteLine(long value, ConsoleColor color) =>
         WriteInColor(Console.WriteLine, value, color);
+    public static void Write(long value, ConsoleColor color, CursorPosition position)
+    {
+        if (!OutputControl.CanUseOutput)
+        {
+            return;
+        }
+
+        OutputControl.CanUseOutput = false;
+        var currentPosition = new CursorPosition(true);
+        position.MoveTo();
+        WriteInColor(Console.Write, value.ToString().PadRight(19), color);
+        currentPosition.MoveTo();
+        OutputControl.CanUseOutput = true;
+    }
 
     public static void Write(decimal value, ConsoleColor color) =>
         WriteInColor(Console.Write, value, color);
     public static void WriteLine(decimal value, ConsoleColor color) =>
         WriteInColor(Console.WriteLine, value, color);
+    public static void Write(decimal value, ConsoleColor color, CursorPosition position)
+    {
+        if (!OutputControl.CanUseOutput)
+        {
+            return;
+        }
+
+        OutputControl.CanUseOutput = false;
+        var currentPosition = new CursorPosition(true);
+        position.MoveTo();
+        WriteInColor(Console.Write, value.ToString("F4").PadRight(19), color);
+        currentPosition.MoveTo();
+        OutputControl.CanUseOutput = true;
+    }
 
     public static void Write(double value, ConsoleColor color) =>
         WriteInColor(Console.Write, value, color);

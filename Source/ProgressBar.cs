@@ -12,6 +12,7 @@ public class ProgressBar : IDisposable
     private bool _active; // Flag, indicating whether spinner is in use
     private readonly ConsoleColor _color; // Color for outputting spinner
     private readonly Stopwatch _timer;
+    private CursorPosition _initialPosition; // Stores Line where Progress bar is drawn.
 
     /// <summary>
     /// With progress bar usage will set current step to calculate and display its completion percentage.
@@ -71,8 +72,13 @@ public class ProgressBar : IDisposable
 
         _active = true;
         Console.CursorVisible = false;
-        _timer.Restart();
+        _initialPosition = new CursorPosition(true)
+        {
+            Left = 0 // Should start at beginning of line
+        };
 
+        this.Draw();
+        _timer.Restart();
         if (!_spinnerThread.IsAlive)
         {
             _spinnerThread.Start();
@@ -82,12 +88,24 @@ public class ProgressBar : IDisposable
     /// <summary>
     /// Stops the progress bar drawing and clears it from screen.
     /// </summary>
-    public void Stop()
+    /// <param name="leaveOnScreen">If true - leaves Progress bar on screen, otherwise (default) - removes.</param>
+    public void Stop(bool leaveOnScreen = false)
     {
         _active = false;
         Console.CursorVisible = true;
         _timer.Stop();
-        Consolix.ClearLine();
+
+        if (leaveOnScreen)
+        {
+            // Just moves to next line after progress bar.
+            _initialPosition.Top++;
+            _initialPosition.MoveTo();
+        }
+        else
+        {
+            _initialPosition.MoveTo();
+            Consolix.ClearLine();
+        }
     }
 
     /// <summary>
@@ -95,12 +113,19 @@ public class ProgressBar : IDisposable
     /// </summary>
     private void Draw()
     {
+        if (!OutputControl.CanUseOutput)
+        {
+            return;
+        }
+
+        OutputControl.CanUseOutput = false;
+
         // 1                               33            47
         // |###################------------| 25% (00:12) |--------------------------------|
         var progressPercentage = (decimal)this.CurrentStep / _totalSteps * 100;
         var fillCharacterCount = (int)Math.Round(0.78M * progressPercentage);
 
-        Consolix.ClearLine();
+        _initialPosition.MoveTo();
         Consolix.Write("[" + new string('#', fillCharacterCount), _color);
         if (fillCharacterCount < 78)
         {
@@ -113,6 +138,7 @@ public class ProgressBar : IDisposable
 
         Consolix.CursorToPosition(33);
         Consolix.Write($"| {progressPercentage:00}% ({_timer.Elapsed:mm\\:ss}) |", _color);
+        OutputControl.CanUseOutput = true;
     }
 
     public void Dispose() => this.Stop();

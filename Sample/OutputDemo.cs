@@ -136,10 +136,18 @@ public class OutputDemo : IConsoleOperation
     private static void OutputProgress()
     {
         using var progressBar = new ProgressBar(69, color: ConsoleColor.Green);
+
+        var progressBarLine = CursorPosition.Current();
+        Consolix.WriteLine();
+        Consolix.Write("Current iteration: ", ConsoleColor.Gray);
+        var iterationPosition = CursorPosition.Current();
+        progressBarLine.MoveTo();
+
         progressBar.Start();
         for (int stepCounter = 0; stepCounter < 69; stepCounter++)
         {
             progressBar.CurrentStep = stepCounter;
+            Consolix.Write(stepCounter, ConsoleColor.Cyan, iterationPosition);
             Thread.Sleep(Random.Shared.Next(10, 500));
         }
 
