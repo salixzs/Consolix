@@ -9,14 +9,31 @@ internal static class OutputControl
 
 public partial class Consolix
 {
+    /// <inheritdoc cref="Console.Write(string)"/>
     public static void Write(string text) => Console.Write(text);
+
+    /// <inheritdoc cref="Console.Write(string, object)"/>
     public static void Write(string text, object arg0) => Console.Write(text, arg0);
+
+    /// <inheritdoc cref="Console.Write(string, object, object)"/>
     public static void Write(string text, object arg0, object arg1) => Console.Write(text, arg0, arg1);
+
+    /// <inheritdoc cref="Console.Write(string, object[])"/>
     public static void Write(string text, params object[] arg) => Console.Write(text, arg);
+
+    /// <inheritdoc cref="Console.WriteLine()"/>
     public static void WriteLine() => Console.WriteLine();
+
+    /// <inheritdoc cref="Console.WriteLine(string)"/>
     public static void WriteLine(string text) => Console.WriteLine(text);
+
+    /// <inheritdoc cref="Console.WriteLine(string, object)"/>
     public static void WriteLine(string text, object arg0) => Console.WriteLine(text, arg0);
+
+    /// <inheritdoc cref="Console.WriteLine(string, object, object)"/>
     public static void WriteLine(string text, object arg0, object arg1) => Console.WriteLine(text, arg0, arg1);
+
+    /// <inheritdoc cref="Console.WriteLine(string, object[])"/>
     public static void WriteLine(string text, params object[] arg) => Console.WriteLine(text, arg);
 
     /// <summary>

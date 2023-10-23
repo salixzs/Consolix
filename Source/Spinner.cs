@@ -18,9 +18,9 @@ public class Spinner : IDisposable
     private readonly bool _showTime; // To show or not the elapsed time
     private readonly Stopwatch _timer;
 
-    private bool _drawProgressBar = false;
+    private bool _drawProgressBar;
     private int _totalSteps; // ProgressBar - how many steps the work will take to complete
-    private int _currentStep = 0;
+    private int _currentStep;
 
     private readonly string[] _sequence;
     private readonly string[] _sequenceSlash = new string[] { "/", "-", "\\", "|" };

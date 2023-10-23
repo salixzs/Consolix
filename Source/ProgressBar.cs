@@ -24,12 +24,12 @@ public class ProgressBar : IDisposable
     }
 
     private readonly int _totalSteps; // ProgressBar - how many steps the work will take to complete
-    private int _currentStep = 0;
+    private int _currentStep;
 
     /// <summary>
     /// Holds elapsed time since progress bar drawing start.
     /// Can use to summarize all used time during entire process.
-    /// Read resulting time right after calling one of <see cref="Stop()"/> methods.
+    /// Read resulting time right after calling one of <see cref="Stop(bool)"/> methods.
     /// </summary>
     public TimeSpan ElapsedTime => _timer.Elapsed;
 
@@ -49,6 +49,7 @@ public class ProgressBar : IDisposable
         _color = color;
         _timer = new Stopwatch();
         _spinnerThread = new Thread(this.Step);
+        _initialPosition = new CursorPosition(true);
     }
 
     private void Step()

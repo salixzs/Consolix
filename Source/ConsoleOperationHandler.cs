@@ -55,7 +55,7 @@ public class ConsoleOperationHandler
             return;
         }
 
-        _logger.LogDebug($"Parsing operation \"{this.SelectedOperation.OperationName}\"");
+        _logger.LogDebug("Parsing operation \"{OperationName}\"", this.SelectedOperation.OperationName);
         this.ValidateOperationProperties(this.SelectedOperation);
         this.SetOperationProperties(this.SelectedOperation, configuration, args);
     }
@@ -274,7 +274,7 @@ public class ConsoleOperationHandler
             var properties = this.SelectedOperation.GetType()
                 .GetProperties()
                 .Where(prop => prop.IsDefined(typeof(ConsoleOptionAttribute), inherit: false)).ToList();
-            if (properties.Any())
+            if (properties.Count != 0)
             {
                 Consolix.WriteLine("Selected operation options:", ConsoleColor.Gray);
             }
