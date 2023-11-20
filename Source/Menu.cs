@@ -21,7 +21,7 @@ public static partial class Consolix
         }
 
         var options = optionsList.ToList();
-        if (!options.Any() || options.Count < 2)
+        if (options.Count < 2)
         {
             throw new ArgumentException("Options list must have more than one item.", nameof(optionsList));
         }
